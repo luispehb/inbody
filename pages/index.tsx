@@ -260,7 +260,7 @@ export default function Home({ measurements }: { measurements: Measurement[] }) 
 export const getServerSideProps: GetServerSideProps = async () => {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
   const { data, error } = await supabase.from("measurements").select("*").order("measured_at", { ascending: false });
   if (error || !data) return { props: { measurements: [] } };
